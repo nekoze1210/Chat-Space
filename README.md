@@ -1,24 +1,48 @@
-# README
+# Chat-Space
+====
+🍺
+## Models
+- message
+- group
+- user
+- group_user
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tables
 
-Things you may want to cover:
+### messages
+|text|  thumbnail  |  group_id   |  user_id |
+|:--:|:-----------:|:-----------:|:--------:|
+|text|   text      |  references |references|
 
-* Ruby version
+### groups
+|title |
+|:----:|
+|string|
 
-* System dependencies
+### users(devise)
+|nickname| email| password |
+|:------:|:----:|:--------:|
+| string |string| string   |
 
-* Configuration
+### group_users
+|  group_id  |   user_id  |
+|:----------:|:----------:|
+| references | references |
 
-* Database creation
+## Associations
 
-* Database initialization
+### Message
+- belongs_to :user
+- belongs_to :group
 
-* How to run the test suite
+### Group
+- has_many :messages
+- has_many :users
 
-* Services (job queues, cache servers, search engines, etc.)
+### User
+- has_many :groups, through: :group_users
+- has_many :messages
 
-* Deployment instructions
-
-* ...
+### Group_user
+- belongs_to :group
+- belongs_to :user

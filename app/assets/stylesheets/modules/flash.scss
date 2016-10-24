@@ -1,0 +1,14 @@
+.layout-alert{
+  background-color: #d65f4c
+}
+.layout-notice {
+   background-color: #38aef0;
+}
+.layout-alert, .layout-notice{
+  height: 30px;
+  line-height: 30px;
+  letter-spacing: 1px;
+  color: #fff;
+  font-weight: 200;
+  text-align: center;
+}

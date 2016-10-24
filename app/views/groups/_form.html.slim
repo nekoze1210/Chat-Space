@@ -3,7 +3,7 @@
     label.chat-group-form__label[for="group_name"]
       | グループ名
   .chat-group-form__field--right
-    = f.text_field :title, placeholder: "グループ名を入力してください", class: "chat-group-form__input"
+    = f.text_field :title, required: true, placeholder: "グループ名を入力してください", class: "chat-group-form__input"
 .chat-group-form__field.clearfix
   .chat-group-form__field--left
     label.chat-group-form__label

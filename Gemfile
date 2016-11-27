@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'slim-rails'
+gem 'carrierwave'
+gem 'rmagick'
 
 group :development, :test do
   gem 'byebug', platform: :mri

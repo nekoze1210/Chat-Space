@@ -15,7 +15,10 @@
             p.chat-group__name
               = group.title
             p.chat-group__message
-              = group.messages.last.text if group.messages.exists?
+              - if group.messages.exists? && group.messages.last.text?
+                = group.messages.last.text
+              - else
+                | < 画像がアップロードされました >
   .chat-main
     .chat-header.clearfix
       .chat-header--left

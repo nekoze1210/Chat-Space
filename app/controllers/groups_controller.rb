@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to root_path, notice: 'グループを作成しました。一覧からトークを開始してください。'
+      redirect_to group_messages_path(@group), notice: 'グループを作成しました。一覧からトークを開始してください。'
     else
       flash[:alert] = 'グループを作成できませんでした。'
       render :new
@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
 
   def update
     @group.update(group_params)
-    redirect_to root_path, notice: 'グループ情報を更新しました。'
+    redirect_to group_messages_path(@group), notice: 'グループ情報を更新しました。'
   end
 
   private

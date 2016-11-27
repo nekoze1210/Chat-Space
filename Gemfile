@@ -16,6 +16,7 @@ gem 'slim-rails'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'
+  gem 'rails-erd'
 end
 
 group :development do

@@ -1,8 +1,10 @@
 class Message < ApplicationRecord
+  mount_uploader :thumbnail, ImageUploader
+
   belongs_to :user
   belongs_to :group
 
-  validates :text, presence: true
+  #まだ validates :text, presence: true
 
   def posted_time
     created_at.strftime('%Y/%m/%d %H:%M:%S')

@@ -13,20 +13,25 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @group.messages.create(message_params)
-    respond_to do |format|
-      format.html do
-        redirect_to group_messages_path(group), notice: 'メッセージを送信しました'
+    @message = @group.messages.new(message_params)
+    if @message.save
+      respond_to do |format|
+        format.html do
+          redirect_to group_messages_path(@group), notice: 'メッセージを送信しました'
+        end
+        format.json do
+          render json: @message.to_api_json
+        end
       end
-      format.json do
-        render json: @message.to_api_json
-      end
+    else
+      flash[:alert] = 'メッセージ送信に失敗しました'
+      redirect_to group_messages_path(@group)
     end
   end
 
   private
   def message_params
-    params.require(:message).permit(:text).merge(user_id: current_user.id, group_id: 1)
+    params.require(:message).permit(:text, :thumbnail).merge(user_id: current_user.id, group_id: 1)
   end
 
   def set_group

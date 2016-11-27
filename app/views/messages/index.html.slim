@@ -2,7 +2,7 @@
   .chat-side
     .chat-user
       h5
-        | Daiki Nagaoka
+        = current_user.nickname
       .chat-user__actions.clearfix
         = link_to new_group_path, class: 'chat-user__action'
           i.fa.fa-pencil-square-o
@@ -11,7 +11,7 @@
     ul.chat-groups
       - @groups.each do |group|
         li.chat-group
-          a.chat-group__link
+          a.chat-group__link href="/groups/#{group.id}/messages"
             p.chat-group__name
               = group.title
             p.chat-group__message
@@ -20,13 +20,13 @@
     .chat-header.clearfix
       .chat-header--left
         h2
-          | group1
+          = @group.title
         p.chat-header__users
           | Members:
           span.chat-header__user
-            | Daiki Nagaoka
+            = @user_names
       .chat-header--right
-        = link_to 'Edit', edit_group_path(1), class: 'chat-header__edit-btn'
+        = link_to 'Edit', edit_group_path(@group.id), class: 'chat-header__edit-btn'
     .chat-body
       ul.chat-messages
         - @messages.each do |message|
@@ -39,7 +39,7 @@
             p.chat-message__body
               = message.text
     .chat-footer
-      = form_for @message do |f|
+      = form_for [@group, @message] do |f|
         .new_message#new_message
           .chat-footer__body
             = f.text_area :text, id: 'message_body', placeholder: 'Type a message', required: true

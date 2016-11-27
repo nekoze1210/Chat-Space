@@ -15,7 +15,7 @@
             p.chat-group__name
               = group.title
             p.chat-group__message
-              | this is a message for you
+              = group.messages.last.text if group.messages.exists?
   .chat-main
     .chat-header.clearfix
       .chat-header--left
@@ -36,13 +36,14 @@
                 = message.posted_user
               p.chat-message__time
                 = message.posted_time
-            p.chat-message__body
-              = message.text
+            .chat-message__body
+              p = message.text
+              = image_tag message.thumbnail.chat.url if message.thumbnail?
     .chat-footer
       = form_for [@group, @message] do |f|
         .new_message#new_message
           .chat-footer__body
-            = f.text_area :text, id: 'message_body', placeholder: 'Type a message', required: true
+            = f.text_area :text, id: 'message_body', placeholder: 'Type a message'
             label.chat-footer__file
               = f.file_field :thumbnail, id: 'message_image'
               i.fa.fa-image

@@ -11,4 +11,13 @@ class Message < ApplicationRecord
   def posted_user
     user.nickname
   end
+
+  def to_api_json
+    {
+      nickname: user.nickname,
+      text: text,
+      time: posted_time,
+      thumbnail: thumbnail.to_s
+    }
+  end
 end

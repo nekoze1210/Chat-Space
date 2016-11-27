@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :nickname, presence: true
 
+  has_many :group_users
   has_many :groups, through: :group_users
 
 end
